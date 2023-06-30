@@ -1,0 +1,6 @@
+{
+  "databaseURL": "https://Anas-Khan-s-workspace-sai7cv.us-east-1.xata.sh/db/carbon-checker",
+  "codegen": {
+    "output": "src/lib/xata.ts"
+  }
+}
