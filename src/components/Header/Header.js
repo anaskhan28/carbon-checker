@@ -1,9 +1,10 @@
 import Link from 'next/link';
 import { FaGithub } from 'react-icons/fa';
-
+import Logo from '../../../public/images/logo.svg'
 import Container from '@/components/Container';
 
 import styles from './Header.module.scss';
+import Image from 'next/image';
 
 const Header = () => {
   return (
@@ -12,15 +13,20 @@ const Header = () => {
         <div className={styles.headerLogo}>
           <p className={styles.headerTitle}>
             <Link href="/">
-              Image Performance
+            <Image src={Logo} height={250} width={250} alt='logo'/>
             </Link>
           </p>
         </div>
         <ul className={styles.headerLinks}>
           <li>
-            <a href="https://github.com/colbyfayock/demo-news-starter" rel="noreferrer">
-              <FaGithub />
-            </a>
+            <Link href='/image'>
+            Image
+            </Link>
+          </li>
+          <li>
+            <Link href='/'>
+            About
+            </Link>
           </li>
         </ul>
       </Container>

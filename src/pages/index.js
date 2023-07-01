@@ -1,154 +1,70 @@
-import { useState, useEffect } from 'react';
-import {co2} from '@tgwf/co2';
 import Layout from '@/components/Layout';
 import Section from '@/components/Section';
 import Container from '@/components/Container';
 import Button from '@/components/Button';
-import { CldImage, getCldImageUrl } from 'next-cloudinary';
 import styles from '@/styles/Home.module.scss';
-
-const swd = new co2({model: 'swd'})
+import Image from 'next/image';
+import Hero1 from '../../public/images/hero-one.svg'
+import Hero2 from '../../public/images/hero-two.svg'
+import Graph from '../../public/images/graph.png'
 
 export default function Home() {
-  const [siteUrl, setSiteUrl] = useState();
-  const [siteImages, setSiteImages] = useState()
-  const [error, setError] = useState();
 
-  function handleOnChange() {
-    setSiteUrl();
-    setError();
-  }
-  async function handleOnSubmit(e) {
-    e.preventDefault();
-    
-    const fields = Array.from(e.currentTarget.elements);
-    let url = fields.find(el => el.name === 'url')?.value;
-
-    if ( !url ) {
-      setError('Please set a valid URL.');
-      return;
-    }
-
-    if ( !/^http(s)?:\/\//.test(url) ) {
-      url = `https://${url}`;
-    }
-
-    setSiteUrl(url);
-  }
-
-
-  useEffect(() => {
-    if ( !siteUrl ) return;
-
-    (
-      async function run (){
-        
-        
-        const cache = await fetch(`/api/get-site?url=${siteUrl}`)
-        .then(r => r.json())
-        if(cache?.site && cache?.images){
-          setSiteImages(cache.images);
-          return;
-        }
-        const {images: websiteImages}  = await 
-        fetch(`api/scrape?url=${siteUrl}`).then(r => r.json())
-
-        console.log(websiteImages, 'scrape Images')
-        
-        const {data: uploads} = await fetch('/api/upload', {
-          method: 'POST',
-          body: JSON.stringify({
-            images: websiteImages
-          })
-        }).then(r => r.json()) 
-        
-        const images = await Promise.all(uploads.map(async (image, i) => {
-          const optimizedUrl = getCldImageUrl({
-            src: image.public_id,
-            format: 'avif'
-          })
-          const optimizedSize = (await fetch(optimizedUrl).then(r => r.blob())).size;
-          console.log(optimizedSize)
-          return {
-            width: image.width,
-            height: image.height,
-            original:{
-              url: websiteImages[i].src,
-              size: image.bytes,
-              format: image.format,
-              co2: swd.perVisit(image.bytes)
-            },
-            upload: {
-              url: image.secure_url,
-              publicId: image.public_id,
-            }, 
-            optimized: {
-            url: optimizedUrl,
-            format: 'avif',
-            size: optimizedSize,
-            co2: swd.perVisit(optimizedSize)
-            }
-          }
-        }))
-        setSiteImages(images)
-
-        await fetch('/api/add-site', {
-          method: 'POST',
-          body: JSON.stringify({
-            images,
-            siteUrl,
-            dateCollected: new Date(Date.now()).toISOString()
-          })
-        })
-
-        })();
-  }, [siteUrl]);
-
-  
 
   return (
     <Layout>
       <Section>
         <Container className={styles.homeContainer}>
-          <h1>Test your website!</h1>
-          <form className={styles.form} onSubmit={handleOnSubmit}>
-            <input className={styles.input} type="text" name="url" onChange={handleOnChange} />
-            <Button className={styles.button}>Test</Button>
-          </form>
-          {siteUrl && <p>Testing { siteUrl }</p>}
-          {!siteUrl && !error && <p>Enter your website URL above to get started!</p>}
-          {error && <p className={styles.error}>{ error }</p>}
+        <Container className={styles.homeContain}>
+        <div className={styles.contain}>
+        <h1>Track and Reduce Your Website's Carbon Emissions</h1>
+        <Button className="btn">Calculate Now</Button>
+        </div>
+        <Image src={Hero1} width={450} height={450} alt='hero'/>
+        </Container>
         </Container>
       </Section>
       <Section>
-        <Container>
-          <ul className={styles.images}>
-            {siteImages?.map((image, key)=>{
-              return (
-                <li key={key} className={styles.imagesRow}>
-                <div className={styles.imageOriginal}>
-                  <CldImage width={250} height={250} src={image.upload.url} alt="Original" />
-                  <h3>Original</h3>
-                  <ul>
-                    <li>Format: {image.original.format}</li>
-                    <li>Size: {(image.original.size / 1000).toFixed(2)}kb</li>
-                    <li>co2: {(image.original.co2 * 1000).toFixed(2)}g</li>
-                  </ul>
-                </div>
-                <div className={styles.imageOptimized}>
-                  <CldImage width={250} height={250} src={image.upload.url} alt="Optimized" />
-                  <h3>Optimized</h3>
-                  <ul>
-                    <li>Format: {image.optimized.format}</li>
-                    <li>Size: {(image.optimized.size / 1000).toFixed(2)}kb</li>
-                    <li>co2: {(image.optimized.co2 * 1000).toFixed(2)}g</li>
-                  </ul>
-                </div>
-              </li>
-              )
-              })}
-          
-          </ul>
+        <Container className={styles.infoContainer}>
+        <Container className={styles.infoContain}>
+        <div className={styles.contain}>
+        <p className={styles.p1}>Make a positive impact on the environment by understanding and 
+          minimizing the carbon footprint of your website. </p>
+          <p className={styles.p2}>CarbonConscious helps you measure and visualize  the emissions generated by your 
+            website, empowering you to take meaningful steps towards sustainability.</p>
+        <Button className="btn">Learn How</Button>
+        </div>
+        <Image src={Hero2} width={450} height={450} alt='hero'/>
+        </Container>
+        </Container>
+      </Section>
+
+      <Section>
+        <Container className={styles.graphContainer}>
+        <Container className={styles.graphContain}>
+        <h1>Why Measure Your Website's Carbon Emissions?</h1>
+        <p>Understanding and measuring your website's carbon emissions is crucial in the fight 
+          against climate change. By taking responsibility for the environmental impact of 
+          your online presence, you contribute to the collective effort of
+           creating a sustainable future.</p>
+           <Image src={Graph} alt='graph'/>
+           <a href='https://almanac.httparchive.org/en/2022/sustainability#carbon-emissions' target='_blank'>https://almanac.httparchive.org/en/2022/sustainability#carbon-emissions</a>
+        </Container>
+        </Container>
+      </Section>
+     
+
+      <Section>
+        <Container className={styles.graphContainer}>
+        <Container className={styles.graphContain}>
+        <h1>Why Measure Your Website's Carbon Emissions?</h1>
+        <p>Understanding and measuring your website's carbon emissions is crucial in the fight 
+          against climate change. By taking responsibility for the environmental impact of 
+          your online presence, you contribute to the collective effort of
+           creating a sustainable future.</p>
+           <Image src={Graph} alt='graph'/>
+           <a href='https://almanac.httparchive.org/en/2022/sustainability#carbon-emissions' target='_blank'>https://almanac.httparchive.org/en/2022/sustainability#carbon-emissions</a>
+        </Container>
         </Container>
       </Section>
     </Layout>
