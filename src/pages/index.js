@@ -19,7 +19,7 @@ export default function Home() {
         <Container className={styles.homeContainer}>
         <Container className={styles.homeContain}>
         <div className={styles.contain}>
-        <h1>Track and Reduce Your Website's Carbon Emissions</h1>
+        <h1>Track and Reduce Your Website&apos;s Carbon Emissions</h1>
         <Button className="btn">Calculate Now</Button>
         </div>
         <Image src={Hero1} width={450} height={450} alt='hero'/>
@@ -44,8 +44,8 @@ export default function Home() {
       <Section>
         <Container className={styles.graphContainer}>
         <Container className={styles.graphContain}>
-        <h1>Why Measure Your Website's Carbon Emissions?</h1>
-        <p>Understanding and measuring your website's carbon emissions is crucial in the fight 
+        <h1>Why Measure Your Website&apos;s Carbon Emissions?</h1>
+        <p>Understanding and measuring your website&apos;s carbon emissions is crucial in the fight 
           against climate change. By taking responsibility for the environmental impact of 
           your online presence, you contribute to the collective effort of
            creating a sustainable future.</p>
@@ -86,9 +86,9 @@ export default function Home() {
         <Container className={styles.lastContain}>
           <div className={styles.containText}>
         <h1>Take Action and Reduce Emissions</h1>
-        <p>Armed with the knowledge of your website's carbon emissions, 
+        <p>Armed with the knowledge of your website&apos;s carbon emissions, 
           you can now make informed decisions to reduce your environmental impact.</p>
-          <Button className="btn">Let's See</Button>
+          <Button className="btn">Let&apos;s See</Button>
           </div>
           
         </Container>
