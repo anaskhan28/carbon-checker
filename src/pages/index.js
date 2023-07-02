@@ -101,6 +101,8 @@ export default function Home() {
         </Container>
         </Container>
       </Section>
+      
     </Layout>
+    
   )
 }

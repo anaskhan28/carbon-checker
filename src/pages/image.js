@@ -6,9 +6,15 @@ import Container from '@/components/Container';
 import Button from '@/components/Button';
 import { CldImage, getCldImageUrl } from 'next-cloudinary';
 import styles from '@/styles/Image.module.scss';
-
+import Cloudinary from '../../public/images/cloudinary.svg'
+import Xata from '../../public/images/xata.svg'
+import ScrappingBee from '../../public/images/scrappingbee.svg'
+import Nextjs from '../../public/images/nextjs.svg'
+import Vercel from '../../public/images/vercel.svg'
+import Header from '@/components/Header/Header';
+import Image from 'next/image';
 const swd = new co2({model: 'swd'})
-
+const images = [Cloudinary, Xata, ScrappingBee, Nextjs, Vercel]
 export default function Home() {
   const [siteUrl, setSiteUrl] = useState();
   const [siteImages, setSiteImages] = useState()
@@ -107,8 +113,9 @@ export default function Home() {
   
 
   return (
-    <Layout>
-      <Section>
+    <div >
+      <Header/>
+      <Section className ={styles.layout}>
         <Container className={styles.homeContainer}>
         <h1>What&apos;s the <span>carbon</span> footprint of the <span>images</span> on your website?</h1>
           <h2>Enter your website address and we&apos;ll calculate how much carbon that page is emitting from images.</h2>
@@ -122,7 +129,7 @@ export default function Home() {
           {error && <p className={styles.error}>{ error }</p>}
         </Container>
       </Section>
-      <Section>
+      <Section className ={styles.layout}>
         <Container>
           <ul className={styles.images}>
             {siteImages?.map((image, key)=>{
@@ -152,7 +159,18 @@ export default function Home() {
           
           </ul>
         </Container>
+        <Container className={styles.imgContainer}>
+          <h1>Built by Anas Khan with</h1>
+          <div className={styles.techImages}>
+          {images.map((image, key) => {
+            return (
+              <Image className='image' key={key} src={image} alt={key}/>
+            )
+          })}
+          </div>
+          <p>This site does not collect or store any personal information.</p>
+        </Container>
       </Section>
-    </Layout>
+    </div>
   )
 }
