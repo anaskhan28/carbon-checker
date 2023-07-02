@@ -110,8 +110,8 @@ export default function Home() {
     <Layout>
       <Section>
         <Container className={styles.homeContainer}>
-          <h1>What's the <span>carbon</span> footprint of the <span>images</span> on your website?</h1>
-          <h2>Enter your website address and we'll calculate how much carbon that page is emitting from images.</h2>
+        <h1>What&apos;s the <span>carbon</span> footprint of the <span>images</span> on your website?</h1>
+          <h2>Enter your website address and we&apos;ll calculate how much carbon that page is emitting from images.</h2>
           <form className={styles.form} onSubmit={handleOnSubmit}>
             <input className={styles.input} type="text" name="url" placeholder='mywebsite.com' onChange={handleOnChange} />
             <Button className={styles.button}>Calculate Emissions</Button>
