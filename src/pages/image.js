@@ -110,13 +110,15 @@ export default function Home() {
     <Layout>
       <Section>
         <Container className={styles.homeContainer}>
-          <h1>Test your website!</h1>
+          <h1>What's the <span>carbon</span> footprint of the <span>images</span> on your website?</h1>
+          <h2>Enter your website address and we'll calculate how much carbon that page is emitting from images.</h2>
           <form className={styles.form} onSubmit={handleOnSubmit}>
-            <input className={styles.input} type="text" name="url" onChange={handleOnChange} />
-            <Button className={styles.button}>Test</Button>
+            <input className={styles.input} type="text" name="url" placeholder='mywebsite.com' onChange={handleOnChange} />
+            <Button className={styles.button}>Calculate Emissions</Button>
           </form>
-          {siteUrl && <p>Testing { siteUrl }</p>}
-          {!siteUrl && !error && <p>Enter your website URL above to get started!</p>}
+          {siteUrl && <p className={styles.p}>Testing { siteUrl }</p>}
+          {!siteUrl && !error && <p className={styles.p1}> Note: Images may appear cropped and optimized for display purposes only.
+             Results are based on original full-sized images that are embedded in the page.</p>}
           {error && <p className={styles.error}>{ error }</p>}
         </Container>
       </Section>

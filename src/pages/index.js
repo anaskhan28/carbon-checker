@@ -7,7 +7,9 @@ import Image from 'next/image';
 import Hero1 from '../../public/images/hero-one.svg'
 import Hero2 from '../../public/images/hero-two.svg'
 import Graph from '../../public/images/graph.png'
-
+import Link from '../../public/images/link.svg';
+import Search from '../../public/images/share.svg'
+import Optimize from '../../public/images/smile.png'
 export default function Home() {
 
 
@@ -55,15 +57,40 @@ export default function Home() {
      
 
       <Section>
-        <Container className={styles.graphContainer}>
-        <Container className={styles.graphContain}>
-        <h1>Why Measure Your Website's Carbon Emissions?</h1>
-        <p>Understanding and measuring your website's carbon emissions is crucial in the fight 
-          against climate change. By taking responsibility for the environmental impact of 
-          your online presence, you contribute to the collective effort of
-           creating a sustainable future.</p>
-           <Image src={Graph} alt='graph'/>
-           <a href='https://almanac.httparchive.org/en/2022/sustainability#carbon-emissions' target='_blank'>https://almanac.httparchive.org/en/2022/sustainability#carbon-emissions</a>
+        <Container className={styles.checkContainer}>
+        <Container className={styles.checkContain}>
+        <h1>How do I check my website?</h1>
+        <div className={styles.contain}>
+          <div className={styles.containText}>
+          <Image src={Link} alt='link'/>
+          <h1>Website Link</h1>
+          <p>Enter your website link address</p>
+          </div>
+          <div className={styles.containText}>
+          <Image src={Search} alt='search'/>
+          <h1>Search Images</h1>
+          <p>We’ll search the images by rendering the page</p>
+          </div>
+          <div className={styles.containText}>
+          <Image src={Optimize} alt='optimize'/>
+          <h1>Optimize Images</h1>
+          <p>We’ll optimize the images by reducing co2</p>
+          </div>
+        </div>
+        </Container>
+        </Container>
+      </Section>
+
+      <Section>
+        <Container className={styles.lastContainer}>
+        <Container className={styles.lastContain}>
+          <div className={styles.containText}>
+        <h1>Take Action and Reduce Emissions</h1>
+        <p>Armed with the knowledge of your website's carbon emissions, 
+          you can now make informed decisions to reduce your environmental impact.</p>
+          <Button className="btn">Let's See</Button>
+          </div>
+          
         </Container>
         </Container>
       </Section>

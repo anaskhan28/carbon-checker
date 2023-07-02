@@ -177,6 +177,152 @@ text-decoration-line: underline;
 }
 }
 
+.checkContainer{
+  background-color: #fff;
+  width: 100%;
+
+  .checkContain{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    padding: 2rem;
+
+    h1{
+      color: #293145;
+text-align: center;
+font-size: 2.5rem;
+font-style: normal;
+font-weight: 600;
+line-height: normal;
+    }
+    .contain{
+      display: flex;
+      flex-direction: row;
+      justify-content: space-around;
+      align-items: center;
+      width: 70%;
+      padding: 1rem;
+      
+      .containText{
+        display: flex;
+width: 13.125rem;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+flex-shrink: 0;
+
+        
+      img{
+        width: 3.75rem;
+  height: 3.75rem;
+  flex-shrink: 0;
+  
+      }
+      h1{
+        color: #293145;
+font-size: 1.125rem;
+font-style: normal;
+font-weight: 600;
+line-height: normal;
+      }
+
+      p{
+        color: #6E7275;
+text-align: center;
+font-size: 1rem;
+margin-top: -0.1rem;
+font-style: normal;
+font-weight: 400;
+line-height: 1.625rem;
+flex-shrink: 0;
+
+      }
+      }
+
+    }
+   
+  }
+}
+
+.lastContainer{
+  margin-top: 2rem;
+  display: flex;
+  width: 100%;
+
+ 
+
+  .lastContain{
+    background-image: url('../../public//images/background.png');
+   
+    background-repeat: no-repeat;
+    object-fit: contain;
+   
+     max-width: 90rem;
+    width: 100%;
+    height: 23.9375rem;
+    flex-shrink: 0;
+
+
+
+    .containText{
+      margin-top: 1rem;
+      padding: 2rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 1rem;
+
+      h1{
+        color: #FFF;
+font-size: 1.875rem;
+font-style: normal;
+font-weight: 600;
+line-height: normal;
+      }
+      p{
+width: 33rem;
+flex-wrap: wrap;
+flex-shrink: 0;
+color: #DBDBDB;
+text-align: center;
+font-size: 1.125rem;
+margin-top: -0.5rem;
+font-style: normal;
+font-weight: 400;
+line-height: 1.5625rem;
+      }
+
+      button{
+        display: inline-flex;
+padding: 0.5rem 2rem;
+align-items: flex-start;
+gap: 0.625rem;
+border-radius: 3.125rem;
+background: #0F9AFE;
+border: none;
+color: #FFF;
+font-size: 1rem;
+
+font-style: normal;
+font-weight: 500;
+line-height: normal;;
+
+&:hover {
+  background-color: #ffff;
+  border: 2px solid $color-blue-medium;
+  color: $color-blue-medium;
+  box-shadow: none;
+  transform: scaleX(1.05); /* Scaling the button on the X-axis */
+}
+      }
+      
+    }
+  }
+  
+}
 
 
 
