@@ -113,9 +113,9 @@ export default function Home() {
   
 
   return (
-    <div >
+    <main className ={styles.main} >
       <Header/>
-      <Section className ={styles.layout}>
+      <Section className ={styles.layout} >
         <Container className={styles.homeContainer}>
         <h1>What&apos;s the <span>carbon</span> footprint of the <span>images</span> on your website?</h1>
           <h2>Enter your website address and we&apos;ll calculate how much carbon that page is emitting from images.</h2>
@@ -171,6 +171,6 @@ export default function Home() {
           <p>This site does not collect or store any personal information.</p>
         </Container>
       </Section>
-    </div>
+    </main>
   )
 }

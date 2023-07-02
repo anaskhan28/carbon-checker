@@ -1,11 +1,21 @@
 @import "@/styles/settings/_settings";
 
+
+@mixin breakpoint($point) {
+  @if $point == md {
+    // 768px
+    @media (max-width: 48em) {
+      @content;
+    }
+  }
+}
 .homeContainer {
 background-color: $color-blue-light;
 width: 100%;
 
 
 }
+
 
 .homeContain{
 
@@ -14,11 +24,24 @@ width: 100%;
     align-items: center;
     padding: 1.5rem;
 
+    @include breakpoint(md) {
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 1rem;
+  
+    }
+
+
 
 .contain {
   max-width: 500px;
   display: flex;
   flex-direction: column;
+  
+  @include breakpoint(md){
+    align-items: center;
+  }
   
 
   h1{
@@ -28,6 +51,12 @@ width: 100%;
     font-style: normal;
     font-weight: 600;
     line-height: normal;
+
+    @include breakpoint(md) {
+      font-size: 1.7rem;
+      text-align: center;
+      max-width: 350px;
+    }
 }
 button{
   border-radius: 3.125rem;
@@ -41,6 +70,13 @@ button{
   cursor: pointer;
   transition: all 0.3s ease; 
   font-weight: $text-weight-semibold;
+
+  @include breakpoint(md){
+    max-width: 130px;
+    width: 100%;
+    font-size: 0.7rem;
+    padding: 0.8rem 1.4rem;
+  }
 
   
   &:hover {
@@ -67,6 +103,10 @@ width: 100%;
     align-items: center;
     padding: 2rem;
 
+    @include breakpoint(md){
+      flex-direction: column;
+    }
+
 
 .contain {
   max-width: 550px;
@@ -83,6 +123,11 @@ width: 100%;
     width: 100%;
     font-size: 2.18rem;
 
+    @include breakpoint(md){
+      font-size: 1.35rem;
+      text-align: start;
+    }
+
 }
   .p2{
 
@@ -96,6 +141,12 @@ width: 100%;
     width: 100%;
     line-height: 1.625rem;
     flex-wrap: wrap;
+
+    @include breakpoint(md){
+      margin-top: 0.5rem;
+      font-size: 0.8rem;
+      line-height: 1.4rem;
+    }
  
     
 }
@@ -148,6 +199,11 @@ font-size: 2rem;
 font-style: normal;
 font-weight: 600;
 line-height: normal;
+
+@include breakpoint(md){
+  font-size: 1.7rem;
+    text-align: center;
+}
   }
 
   p{
@@ -160,6 +216,11 @@ font-size: 1rem;
 font-style: normal;
 font-weight: 400;
 line-height: 1.625rem;
+
+@include breakpoint(md){
+  line-height: 1.4rem;
+    text-align: center;
+}
   }
 
   a{
