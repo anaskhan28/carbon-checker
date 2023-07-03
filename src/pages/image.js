@@ -12,6 +12,8 @@ import ScrappingBee from '../../public/images/scrappingbee.svg'
 import Nextjs from '../../public/images/nextjs.svg'
 import Vercel from '../../public/images/vercel.svg'
 import Header from '@/components/Header/Header';
+import {MagnifyingGlass} from 'react-loader-spinner';
+
 import Image from 'next/image';
 const swd = new co2({model: 'swd'})
 const images = [Cloudinary, Xata, ScrappingBee, Nextjs, Vercel]
@@ -19,14 +21,17 @@ export default function Home() {
   const [siteUrl, setSiteUrl] = useState();
   const [siteImages, setSiteImages] = useState()
   const [error, setError] = useState();
+  const [isLoading, setIsLoading] = useState(false)
 
   function handleOnChange() {
     setSiteUrl();
     setError();
   }
   async function handleOnSubmit(e) {
+
     e.preventDefault();
     
+   
     const fields = Array.from(e.currentTarget.elements);
     let url = fields.find(el => el.name === 'url')?.value;
 
@@ -40,6 +45,7 @@ export default function Home() {
     }
 
     setSiteUrl(url);
+    setIsLoading(true)
   }
 
 
@@ -54,6 +60,7 @@ export default function Home() {
         .then(r => r.json())
         if(cache?.site && cache?.images){
           setSiteImages(cache.images);
+          setIsLoading(false)
           return;
         }
         const {images: websiteImages}  = await 
@@ -107,6 +114,8 @@ export default function Home() {
           })
         })
 
+        setIsLoading(false)
+
         })();
   }, [siteUrl]);
 
@@ -130,7 +139,23 @@ export default function Home() {
         </Container>
       </Section>
       <Section className ={styles.layout}>
-        <Container>
+        {isLoading ?
+        
+        (
+          <div className={styles.loader} >
+        <MagnifyingGlass
+  visible={true}
+  height="80"
+  width="80"
+  ariaLabel="MagnifyingGlass-loading"
+  wrapperStyle={{}}
+  wrapperClass={styles.MagnifyingGlass}
+  glassColor = '#c0efff'
+  color = '#e15b64'
+/>
+</div>
+        ): 
+          <Container>
           <ul className={styles.images}>
             {siteImages?.map((image, key)=>{
               return (
@@ -159,6 +184,7 @@ export default function Home() {
           
           </ul>
         </Container>
+}
         <Container className={styles.imgContainer}>
           <h1>Built by Anas Khan with</h1>
           <div className={styles.techImages}>

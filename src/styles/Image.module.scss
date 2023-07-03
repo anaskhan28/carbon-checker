@@ -304,3 +304,26 @@ width: 22.125rem;
   }
   }
 }
+
+.MagnifyingGlass{
+  width: 95rem;
+  height: 10rem;
+
+  @include breakpoint(md){
+    width: 20rem;
+    height: 10rem;
+  }
+
+
+}
+
+.loader{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  @include breakpoint(md){
+    margin-right: 6rem;
+    margin-top: 1rem;
+  }
+}
