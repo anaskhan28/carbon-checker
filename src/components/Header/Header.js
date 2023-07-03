@@ -5,8 +5,11 @@ import Container from '@/components/Container';
 
 import styles from './Header.module.scss';
 import Image from 'next/image';
+import { useState } from 'react';
 
 const Header = () => {
+  const [active, setActive] = useState(false);
+
   return (
     <header className={styles.header}>
       <Container className={styles.headerContainer}>
@@ -17,7 +20,10 @@ const Header = () => {
             </Link>
           </p>
         </div>
-        <ul className={styles.headerLinks}>
+        <div onClick={() => setActive(!active)} className={styles.hamburgerWrapper}>
+         <div className={active ? styles.activeHamburger: styles.hamburger}/>
+        </div>
+        <ul className={active ? styles.activeHeaderLinks: styles.headerLinks}>
           <li>
             <Link href='/image'>
             Image
