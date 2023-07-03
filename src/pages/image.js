@@ -21,7 +21,7 @@ export default function Home() {
   const [siteUrl, setSiteUrl] = useState();
   const [siteImages, setSiteImages] = useState()
   const [error, setError] = useState();
-  const [isLoading, setIsLoading] = useState(true)
+  const [isLoading, setIsLoading] = useState(false)
 
   function handleOnChange() {
     setSiteUrl();
