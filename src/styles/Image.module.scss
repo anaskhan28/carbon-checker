@@ -319,11 +319,21 @@ width: 22.125rem;
 
 .loader{
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
 
   @include breakpoint(md){
     margin-right: 6rem;
     margin-top: 1rem;
+  }
+
+  p{
+    color: #FCFDFF;
+    text-align: center;
+    font-size: 1.5rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 1.54rem;
   }
 }

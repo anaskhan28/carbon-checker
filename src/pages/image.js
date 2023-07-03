@@ -21,7 +21,7 @@ export default function Home() {
   const [siteUrl, setSiteUrl] = useState();
   const [siteImages, setSiteImages] = useState()
   const [error, setError] = useState();
-  const [isLoading, setIsLoading] = useState(false)
+  const [isLoading, setIsLoading] = useState(true)
 
   function handleOnChange() {
     setSiteUrl();
@@ -143,6 +143,7 @@ export default function Home() {
         
         (
           <div className={styles.loader} >
+
         <MagnifyingGlass
   visible={true}
   height="80"
@@ -151,8 +152,11 @@ export default function Home() {
   wrapperStyle={{}}
   wrapperClass={styles.MagnifyingGlass}
   glassColor = '#c0efff'
-  color = '#e15b64'
+  color = '#0F9AFE'
 />
+
+  <p>We are looking for images!!</p>
+
 </div>
         ): 
           <Container>
