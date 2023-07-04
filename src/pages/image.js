@@ -23,6 +23,12 @@ export default function Home() {
   const [error, setError] = useState();
   const [isLoading, setIsLoading] = useState(false)
 
+
+
+  const [count, setCount] = useState();
+
+
+  let imageCount = 0;
   function handleOnChange() {
     setSiteUrl();
     setError();
@@ -55,8 +61,8 @@ export default function Home() {
     (
       async function run (){
         
-        
-        const cache = await fetch(`/api/get-site?url=${siteUrl}`)
+        try {
+          const cache = await fetch(`/api/get-site?url=${siteUrl}`)
         .then(r => r.json())
         if(cache?.site && cache?.images){
           setSiteImages(cache.images);
@@ -66,6 +72,18 @@ export default function Home() {
         const {images: websiteImages}  = await 
         fetch(`api/scrape?url=${siteUrl}`).then(r => r.json())
 
+       
+        const count = () => {
+          websiteImages.map((item) =>{
+            if (item.src.includes('https://')) {
+              imageCount++;
+            }
+          })
+         setCount(imageCount)
+          
+        }
+        count();
+        
         console.log(websiteImages, 'scrape Images')
         
         const {data: uploads} = await fetch('/api/upload', {
@@ -115,9 +133,15 @@ export default function Home() {
         })
 
         setIsLoading(false)
+          
+        } catch (error) {
+          setError(error)
+          
+        }
+        
 
         })();
-  }, [siteUrl]);
+  }, [siteUrl, count, imageCount]);
 
   
 
@@ -155,7 +179,18 @@ export default function Home() {
   color = '#0F9AFE'
 />
 
-  <p>We are looking for images!!</p>
+<h1>
+ Scanning Your <span>Site!</span>
+
+</h1>
+  <p>
+    {!count && ("This might take a minute....")}
+ </p>
+ 
+ {count && <p>
+ Found <span>{count}</span> images, calculating emissions...
+ </p>
+}
 
 </div>
         ): 
