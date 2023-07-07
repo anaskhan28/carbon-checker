@@ -22,13 +22,14 @@ export default function Home() {
   const [siteImages, setSiteImages] = useState()
   const [error, setError] = useState();
   const [isLoading, setIsLoading] = useState(false)
+  const [imagesCount, setImagesCount] = useState();
 
 
 
   const [count, setCount] = useState();
 
 
-  let imageCount = 0;
+
   function handleOnChange() {
     setSiteUrl();
     setError();
@@ -61,7 +62,7 @@ export default function Home() {
     (
       async function run (){
         
-        try {
+       
           const cache = await fetch(`/api/get-site?url=${siteUrl}`)
         .then(r => r.json())
         if(cache?.site && cache?.images){
@@ -74,6 +75,7 @@ export default function Home() {
 
        
         const count = () => {
+          let imageCount = 0;
           websiteImages.map((item) =>{
             if (item.src.includes('https://')) {
               imageCount++;
@@ -92,6 +94,8 @@ export default function Home() {
             images: websiteImages
           })
         }).then(r => r.json()) 
+
+        console.log(uploads, 'up')
         
         const images = await Promise.all(uploads.map(async (image, i) => {
           const optimizedUrl = getCldImageUrl({
@@ -123,6 +127,20 @@ export default function Home() {
         }))
         setSiteImages(images)
 
+        const imageCount = () => {
+          let imageCount = 0;
+          siteImages?.map((item) =>{
+            if (item.upload.url.includes('https://')) {
+              imageCount++;
+            }
+          })
+         setImagesCount(imageCount)
+          
+        }
+        imageCount();
+
+
+
         await fetch('/api/add-site', {
           method: 'POST',
           body: JSON.stringify({
@@ -134,14 +152,11 @@ export default function Home() {
 
         setIsLoading(false)
           
-        } catch (error) {
-          setError(error)
-          
-        }
+       
         
 
         })();
-  }, [siteUrl, count, imageCount]);
+  }, [siteUrl, siteImages]);
 
   
 
@@ -194,13 +209,19 @@ export default function Home() {
 
 </div>
         ): 
+        
           <Container>
+
+{imagesCount && <p className={styles.para}>
+ There are total <span>{count}</span> images needed to change but for your simplicity will show {imagesCount}...
+ </p>
+}
           <ul className={styles.images}>
             {siteImages?.map((image, key)=>{
               return (
                 <li key={key} className={styles.imagesRow}>
                 <div className={styles.imageOriginal}>
-                  <CldImage width={250} height={250} src={image.upload.url} alt="Original" />
+                  <CldImage width={100} height={100} src={image.upload.url} alt="Original" />
                   <h3>Original</h3>
                   <ul>
                     <li>Format: {image.original.format}</li>
@@ -209,7 +230,7 @@ export default function Home() {
                   </ul>
                 </div>
                 <div className={styles.imageOptimized}>
-                  <CldImage width={250} height={250} src={image.upload.url} alt="Optimized" />
+                  <CldImage width={100} height={100} src={image.upload.url} alt="Optimized" />
                   <h3>Optimized</h3>
                   <ul>
                     <li>Format: {image.optimized.format}</li>

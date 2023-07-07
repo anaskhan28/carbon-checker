@@ -7,6 +7,11 @@ export default async function hanlder(req, res) {
 
     const {siteUrl, images, dateCollected } = JSON.parse(req.body)
     
+    if(images === []){
+        console.log("Images are not there")
+
+        return
+    }
     const siteRecord = await xata.db.Sites.create({
         siteUrl,
         dateCollected

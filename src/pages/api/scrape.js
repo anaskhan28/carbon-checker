@@ -15,7 +15,7 @@ export const config = {
     
     const { images } = await fetch(`https://app.scrapingbee.com/api/v1?${paramsString}`).then(r => r.json());
     
-    const newImage = images.map((image, key) => {
+    const newImage = images?.map((image, key) => {
       if (typeof image.src === 'string' && (image.src.startsWith('//') || image.src.startsWith('./') || image.src.startsWith('/') || image.src.startsWith(''))) {
         console.log(image, 'image')
         return image.src = `${params.url}${image.src}`;
@@ -28,7 +28,7 @@ export const config = {
         console.log(newImage, 'img')
       
   
-    console.log(images[0].src)
+    // console.log(images[0].src)
     return new Response(JSON.stringify({
       images
     }), {

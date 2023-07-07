@@ -6,15 +6,17 @@ cloudinary.config({
   api_secret: process.env.CLOUDINARY_API_SECRET,
   
 })
-
 export default async function handler(req, res) {
   try {
     console.log('Request body:', req.body);
     const { images } = JSON.parse(req.body);
-  
+
     const uploads = [];
-  
-    for (const image of images) {
+
+    const maxImages = 20; // Set the maximum number of images to upload
+    const imagesToUpload = images.slice(0, maxImages); // Get a subset of images within the limit
+
+    for (const image of imagesToUpload) {
       try {
         const results = await cloudinary.uploader.upload(image.src, {
           folder: 'img-carbon-checker',
@@ -28,7 +30,7 @@ export default async function handler(req, res) {
         continue;
       }
     }
-  
+
     res.status(200).json({
       data: uploads
     });
@@ -39,7 +41,4 @@ export default async function handler(req, res) {
       error: 'Internal server error'
     });
   }
-  
-  
-
 }

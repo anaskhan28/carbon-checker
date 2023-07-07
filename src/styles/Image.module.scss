@@ -9,6 +9,27 @@
     }
   }
 }
+
+.para{
+  margin-top: 1rem;
+  color: #FCFDFF;
+    text-align: center;
+    font-size: 1.5rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 1.54rem;
+
+   @include breakpoint(md){
+    max-width: 374px;
+    width: 100%;
+   }
+
+    span{
+      color: #0F9AFE;
+      font-weight: bolder;
+    }
+    
+}
 .main{
   display: grid;
   grid-template-rows: auto 1fr auto;
@@ -19,6 +40,8 @@
   background-color: #293145;
   
 }
+
+
 .homeContainer {
   display: flex;
   flex-direction: column;
