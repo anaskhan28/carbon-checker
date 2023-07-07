@@ -13,7 +13,7 @@ export default async function handler(req, res) {
 
     const uploads = [];
 
-    const maxImages = 20; // Set the maximum number of images to upload
+    const maxImages = 15; // Set the maximum number of images to upload
     const imagesToUpload = images.slice(0, maxImages); // Get a subset of images within the limit
 
     for (const image of imagesToUpload) {
