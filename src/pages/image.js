@@ -156,7 +156,7 @@ export default function Home() {
         
 
         })();
-  }, [siteUrl, siteImages]);
+  }, [siteUrl]);
 
   
 
