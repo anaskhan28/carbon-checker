@@ -246,7 +246,7 @@ export default function Home() {
         </Container>
 }
         <Container className={styles.imgContainer}>
-          <h1>Built by Anas Khan with</h1>
+          {/* <h1>Built by Anas Khan with</h1> */}
           <div className={styles.techImages}>
           {images.map((image, key) => {
             return (
