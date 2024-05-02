@@ -221,7 +221,7 @@ export default function Home() {
               return (
                 <li key={key} className={styles.imagesRow}>
                 <div className={styles.imageOriginal}>
-                  <CldImage width={100} height={100} src={image.upload.url} alt="Original" />
+                  <CldImage width={500} height={500} src={image.upload.url} alt="Original" />
                   <h3>Original</h3>
                   <ul>
                     <li>Format: {image.original.format}</li>
@@ -230,7 +230,7 @@ export default function Home() {
                   </ul>
                 </div>
                 <div className={styles.imageOptimized}>
-                  <CldImage width={100} height={100} src={image.upload.url} alt="Optimized" />
+                  <CldImage width={500} height={500} src={image.upload.url} alt="Optimized" />
                   <h3>Optimized</h3>
                   <ul>
                     <li>Format: {image.optimized.format}</li>
