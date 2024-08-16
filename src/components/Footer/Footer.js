@@ -5,11 +5,11 @@ import styles from './Footer.module.scss';
 const Footer = ({ ...rest }) => {
   return (
     <footer className={styles.footer} {...rest}>
-      // <Container className={`${styles.footerContainer} ${styles.footerLegal}`}>
-      //   <p>
-      //     &copy; <a href="http://anaskhan28.bio.link/"></a>, {new Date().getFullYear()}
-      //   </p>
-      // </Container>
+      <Container className={`${styles.footerContainer} ${styles.footerLegal}`}>
+        // <p>
+        //   &copy; <a href="http://anaskhan28.bio.link/"></a>, {new Date().getFullYear()}
+        // </p>
+      </Container>
     </footer>
   );
 };
